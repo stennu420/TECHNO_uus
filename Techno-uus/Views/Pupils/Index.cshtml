@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Techno_uus.Models.Pupil>
+@{
+	ViewData["Title"] = "Junsud";
+}
+<h1>Junsude nimekiri</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(Model => Model.LastName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(Model => Model.FirstName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(Model => Model.HasEnrolleddAt)
+			</th>
+			<th>
+				@Html.DisplayNameFor(Model => Model.DayOfBirth)
+			</th>
+			<th>
+				@Html.DisplayNameFor(Model => Model.Grade)
+			</th>
+			<th>
+				@Html.DisplayNameFor(Model => Model.PhoneNumber)
+			</th>
+			<th>
+				@Html.DisplayNameFor(Model => Model.PostCode)
+			</th>
+			<th>
+				@Html.DisplayNameFor(Model => Model.GamerTag)
+			</th>
+			<th>
+				Tööriistad
+			</th>
+		</tr>
+
+	</thead>
+	<tbody>
+		@foreach (var pupil in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem =>
+										pupil.LastName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem =>
+										pupil.FirstName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem =>
+										pupil.HasEnrolleddAt)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem =>
+										pupil.DayOfBirth)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem =>
+										pupil.Grade)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem =>
+										pupil.PhoneNumber)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem =>
+										pupil.PostCode)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem =>
+										pupil.GamerTag)
+				</td>
+				<td>
+					 <a asp-action="Edit" asp-route-id="@pupil.Id">Muuda</a>
+					 <a asp-action="Delete" asp-route-id="@pupil.Id">Kustuta</a>
+					 <a asp-action="Details" asp-route-id="@pupil.Id">Vaata</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<a asp-action="Create">Sisesta Õpilane</a>
