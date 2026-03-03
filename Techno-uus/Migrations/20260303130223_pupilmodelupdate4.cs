@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Techno_uus.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class pupilmodelupdate4 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +15,8 @@ namespace Techno_uus.Migrations
                 name: "Pupil",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     HasEnrolleddAt = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -23,7 +24,7 @@ namespace Techno_uus.Migrations
                     Grade = table.Column<int>(type: "int", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PostCode = table.Column<int>(type: "int", nullable: false),
-                    GamerTag = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    GamerTag = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

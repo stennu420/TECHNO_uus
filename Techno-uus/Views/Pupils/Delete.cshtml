@@ -1,0 +1,45 @@
+﻿@model Techno_uus.Models.Pupil
+
+<h1>Kustuta Juntsu</h1>
+
+<div>
+	<table>
+		<tr>
+			<td>@Html.DisplayFor(Model => Model.FirstName)</td>
+			<td>@Html.DisplayNameFor(Model => Model.FirstName)</td>
+		</tr>
+
+		<tr>
+			<td>@Html.DisplayFor(Model => Model.LastName)</td>
+			<td>@Html.DisplayNameFor(Model => Model.LastName)</td>
+		</tr>
+
+		<tr>
+			<td>@Html.DisplayFor(Model => Model.HasEnrolleddAt)</td>
+			<td>@Html.DisplayNameFor(Model => Model.HasEnrolleddAt)</td>
+		</tr>
+
+		<tr>
+			<td>@Html.DisplayFor(Model => Model.DayOfBirth)</td>
+			<td>@Html.DisplayNameFor(Model => Model.DayOfBirth)</td>
+		</tr>
+
+		<tr>
+			<td>@Html.DisplayFor(Model => Model.PostCode)</td>
+			<td>@Html.DisplayNameFor(Model => Model.PostCode)</td>
+		</tr>
+
+		<tr>
+			<td>@Html.DisplayFor(Model => Model.Grade)</td>
+			<td>@Html.DisplayNameFor(Model => Model.Grade)</td>
+		</tr>
+
+	</table>
+
+</div>
+
+<form asp-action="Delete">
+	<input type="hidden" asp-for="Id"/>
+	<input  type="submit" value="Kustuta Õpilane" class="btn btn-danger"/> <br />
+	<a asp-action="Index">Tühista</a>
+</form>

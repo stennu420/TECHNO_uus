@@ -24,8 +24,11 @@ namespace Techno_uus.Migrations
 
             modelBuilder.Entity("Techno_uus.Models.Pupil", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("DayOfBirth")
                         .HasColumnType("datetime2");
@@ -35,7 +38,6 @@ namespace Techno_uus.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GamerTag")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Grade")
