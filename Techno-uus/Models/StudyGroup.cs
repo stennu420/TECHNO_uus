@@ -1,41 +1,29 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using static Techno_uus.Models.StudyGroup;
-
-namespace Techno_uus.Models
+﻿namespace Techno_uus.Models
 {
     public class StudyGroup
     {
-        public enum StudyGroupLevel
-        {
-            Algaja = 0,
-            Kesktase = 1,
-            Edasijõudnud = 2
-        }
+        public int Id { get; set; }
 
-        public class StudyGroups
-        {
-            public int Id { get; set; }
+        // Grupi nimi
+        public string GroupName { get; set; }
 
-            [Required]
-            [StringLength(100)]
-            public string Name { get; set; } = "";
+        //Õpingute algus ja lõpp
+        public DateTime StudyStart { get; set; }
+        public DateTime StudyEnd { get; set; }
 
-            [DataType(DataType.Date)]
-            public DateTime StudyStart { get; set; }
+        //Juhtõpilane 
+        public int LeaderPupilId { get; set; }
+        public Pupil? LeaderPupil { get; set; }
 
-            [DataType(DataType.Date)]
-            public DateTime StudyEnd { get; set; }
+        // Klassiruumi info
+        public string? ClassroomInfo { get; set; }
 
-            //Juhtõpilane Pupils tabelist
-            [Required]
-            public int LeaderPupilId { get; set; }
-            public Pupil? LeaderPupil { get; set; }
-            [StringLength(200)]
-            public string? ClassroomInfo { get; set; }
+        // Oma andmetüüp
+        public StudyGroupLevel Level { get; set; }
 
-            // plus1 andmetüüp 
-            public StudyGroupLevel Level { get; set; }
-        }
+    }
+    public enum StudyGroupLevel
+    {
+        Beginner, Intermediate, Advanced
     }
 }
