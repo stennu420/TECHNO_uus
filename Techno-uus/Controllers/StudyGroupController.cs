@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Techno_uus.Data;
 using static Techno_uus.Models.StudyGroup;
 
 namespace Techno_uus.Controllers
@@ -8,13 +9,18 @@ namespace Techno_uus.Controllers
         // Siin on Index 
       public async Task<IActionResult> Index()
       {
-            var studyGroups = await _context.StudyGroups
-                .Include(s => s.LeaderPupil)
-                .OrderBy(s => s.Name)
-                .ToListAsync();
+            var studyGroups = await _context.StudyGroup
+           .Include(s => s.LeaderPupil)
+           .ToListAsync();
 
             return View(studyGroups);
+        } 
 
-      } 
+      private readonly SchoolContext _context;
+      public StudyGroupController(SchoolContext context)
+      {
+            _context = context;
+      }
+
     }
 }
