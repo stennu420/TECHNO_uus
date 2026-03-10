@@ -1,0 +1,62 @@
+﻿@model Techno_uus.Models.StudyGroup
+
+<h2>@(Model.Id == 0 ? "Create Study Group" : "Edit Study Group")</h2>
+
+<form method="post">
+
+    @if (Model.Id != 0)
+    {
+        <input type="hidden" name="Id" value="@Model.Id" />
+    }
+
+    <div class="mt-3">
+        <label>Name</label>
+        <input class="form-control" name="Name" value="@Model.FirstName" />
+    </div>
+    <div class="mt-3">
+        <label>Name</label>
+        <input class="form-control" name="Name" value="@Model.LastName" />
+    </div>
+
+    <div class="mt-3">
+        <label>Study Start</label>
+        <input type="date" class="form-control" name="StudyStart"
+               value="@(Model.StudyStart != DateTime.MinValue ? Model.StudyStart.ToString("yyyy-MM-dd") : "")" />
+    </div>
+
+    <div class="mt-3">
+        <label>Study End</label>
+        <input type="date" class="form-control" name="StudyEnd"
+               value="@(Model.StudyEnd != DateTime.MinValue ? Model.StudyEnd.ToString("yyyy-MM-dd") : "")" />
+    </div>
+
+    <div class="mt-3">
+        <label>Leader Pupil</label>
+        <select class="form-control" name="LeaderPupilId">
+            @foreach (var p in ViewBag.Pupils)
+            {
+                <option value="@p.Id" @(Model.LeaderPupilId == p.Id ? "selected" : "")>
+                    @p.FirstName @p.LastName
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="mt-3">
+        <label>Classroom Info</label>
+        <input class="form-control" name="ClassroomInfo" value="@Model.ClassroomInfo" />
+    </div>
+
+    <div class="mt-3">
+        <label>Level</label>
+        <select class="form-control" name="Level">
+            <option value="0" @(Model.Level == Techno_uus.Models.StudyGroupLevel.Beginner ? "selected" : "")>Beginner</option>
+            <option value="1" @(Model.Level == Techno_uus.Models.StudyGroupLevel.Intermediate ? "selected" : "")>Intermediate</option>
+            <option value="2" @(Model.Level == Techno_uus.Models.StudyGroupLevel.Advanced ? "selected" : "")>Advanced</option>
+        </select>
+    </div>
+
+    <button class="btn btn-success mt-3">Save</button>
+    <a class="btn btn-secondary mt-3" href="/StudyGroup">Cancel</a>
+</form>
+
