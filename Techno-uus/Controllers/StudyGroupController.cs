@@ -61,6 +61,21 @@ namespace Techno_uus.Controllers
             return BadRequest();
         }
         
+        // Siin on Details
+        [HttpGet]
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var studyGroup = await _context.StudyGroups
+                .FirstOrDefaultAsync(m => m.Id == id);
 
+            if (studyGroup == null)
+            {
+                return NotFound();
+            }
+            return View(studyGroup);
     }
 }
