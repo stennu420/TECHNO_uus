@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Techno_uus.Data;
+using Techno_uus.Models;
 using static Techno_uus.Models.StudyGroup;
 
 namespace Techno_uus.Controllers
@@ -19,8 +22,17 @@ namespace Techno_uus.Controllers
       private readonly SchoolContext _context;
       public StudyGroupController(SchoolContext context)
       {
+        private readonly SchoolContext _context;
+        public StudyGroupController(SchoolContext context)
+        {
             _context = context;
       }
+        }
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.StudyGroups.ToListAsync());
+        }
+
         // Siin on Create
         [HttpGet]
         public IActionResult Cretae()
