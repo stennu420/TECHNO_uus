@@ -36,12 +36,17 @@ namespace Techno_uus.Controllers
         // Siin on Create
         [HttpGet]
         public IActionResult Cretae()
+
+        public IActionResult Create()
         {
             ViewBag.LeaderPupilId = new SelectList(_context.Pupils, "Id", "FirstName");
             return View("CreateEdit");
+            return View();
         }
 
+        // Siin on Create POST
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,GroupName,StudyStart,StudyEnd,LeaderPupilId,ClassroomInfo,Level")] StudyGroup studyGroup)
         {
             if (ModelState.IsValid)
@@ -49,9 +54,11 @@ namespace Techno_uus.Controllers
                 _context.Add(studyGroup);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+                return RedirectToAction(("Index"));
             }
             ViewBag.LeaderPupilId = new SelectList(_context.Pupils, "Id", "FirstName", studyGroup.LeaderPupilId);
             return View("CreateEdit", studyGroup);
+            return BadRequest();
         }
         
 
