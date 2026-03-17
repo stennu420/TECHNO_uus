@@ -9,73 +9,102 @@ namespace Techno_uus.Controllers
 {
     public class StudyGroupController : Controller
     {
-        // Siin on Index 
-      public async Task<IActionResult> Index()
-      {
-            var studyGroups = await _context.StudyGroup
-           .Include(s => s.LeaderPupil)
-           .ToListAsync();
-
-            return View(studyGroups);
-        } 
-
-      private readonly SchoolContext _context;
-      public StudyGroupController(SchoolContext context)
-      {
         private readonly SchoolContext _context;
         public StudyGroupController(SchoolContext context)
         {
             _context = context;
-      }
         }
         public async Task<IActionResult> Index()
         {
             return View(await _context.StudyGroups.ToListAsync());
         }
-
         // Siin on Create
         [HttpGet]
-        public IActionResult Cretae()
 
         public IActionResult Create()
         {
-            ViewBag.LeaderPupilId = new SelectList(_context.Pupils, "Id", "FirstName");
-            return View("CreateEdit");
             return View();
         }
-
         // Siin on Create POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,GroupName,StudyStart,StudyEnd,LeaderPupilId,ClassroomInfo,Level")] StudyGroup studyGroup)
+        public async Task<IActionResult> Create([Bind
+            ("Id,FirstName,LastName,GroupName,StudyStart,StudyEnd,LeaderPupilId,ClassroomInfo,Level")] StudyGroup 
+            studyGroup)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(studyGroup);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
                 return RedirectToAction(("Index"));
             }
-            ViewBag.LeaderPupilId = new SelectList(_context.Pupils, "Id", "FirstName", studyGroup.LeaderPupilId);
-            return View("CreateEdit", studyGroup);
             return BadRequest();
         }
-        
-        // Siin on Details
+        //  Siin  on Details
         [HttpGet]
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult>  Details (int? id) 
         {
-            if (id == null)
+            if (id == null) 
             {
                 return NotFound();
             }
-            var studyGroup = await _context.StudyGroups
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (studyGroup == null)
+            var studyGroup =await _context.StudyGroups
+                 .FirstOrDefaultAsync(m => m.Id == id);
+            if (studyGroup == null) 
             {
                 return NotFound();
             }
             return View(studyGroup);
+        }
+        // Siin on Delete
+        [HttpGet]
+        public  async Task<IActionResult> Delete(int? id) 
+        {
+            if(id == null) 
+            {
+                return  NotFound(); 
+            }
+            var studyGroup  = await  _context.StudyGroups
+                               .FirstOrDefaultAsync(m => m.Id == id);
+            if (studyGroup == null) 
+            {
+                return NotFound();
+            }
+            return View(studyGroup);
+        }
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult>  DeletePost(int id) 
+        {
+            if (id == null) 
+            {
+                return NotFound();
+            }
+            var pupil =  await _context.StudyGroups.FindAsync(id);
+            _context.StudyGroups.Remove(pupil);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+        //Siin on Edit get
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? id) 
+        {
+            if (id == null) 
+            {
+                return NotFound();
+            }
+
+            var studyGroup = await _context.StudyGroups
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (studyGroup == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Pupils  = new SelectList(_context.Pupils, "Id", "FirstName");
+            return  View("CreateEdit", studyGroup);
+        }
+
+
+
     }
 }
