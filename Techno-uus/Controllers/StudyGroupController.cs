@@ -87,9 +87,9 @@ namespace Techno_uus.Controllers
         }
         //Siin on Edit get
         [HttpGet]
-        public async Task<IActionResult> Edit(int? id) 
+        public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null) 
+            if (id == null)
             {
                 return NotFound();
             }
@@ -100,8 +100,23 @@ namespace Techno_uus.Controllers
             {
                 return NotFound();
             }
-            ViewBag.Pupils  = new SelectList(_context.Pupils, "Id", "FirstName");
-            return  View("CreateEdit", studyGroup);
+            ViewBag.Pupils = new SelectList(_context.Pupils, "Id", "FirstName");
+            return View("CreateEdit", studyGroup);
+        }
+
+        [HttpPost, ActionName("Edit")]
+        public async Task<IActionResult> EditPost(int id, [Bind
+            ("FirstName,LastName,GroupName,StudyStart,StudyEnd,LeaderPupilId,ClassroomInfo,Level")] StudyGroup
+            studyGroup)
+        {
+            if(id == null) 
+            {
+                return BadRequest();
+            }
+            studyGroup.Id = id;
+            _context.StudyGroups.Update(studyGroup);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
 
