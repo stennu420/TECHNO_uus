@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Techno_uus.Models.StudyGroup>
+@{
+	ViewData["Title"] = "Rühmad";
+}
+
+<h1>StudyGroups</h1>
+<table class="table">
+	<theade>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.FirstName)
+			</th>
+		</tr>
+		<tr>
+			<th> 
+				@Html.DisplayNameFor(model => model.LastName)
+			</th>
+		</tr>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.StudyStart)
+			</th>
+		</tr>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.StudyEnd)
+			</th>
+		</tr>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.LeaderPupil)
+			</th>
+		</tr>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.ClassroomInfo)
+			</th>
+		</tr>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Level)
+			</th>
+		</tr>
+	</theade>
+	<tbody>
+	@foreach (var studyGroup in Model)
+	{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => studyGroup.FirstName)
+				</td>
+
+				<td>
+					@Html.DisplayFor(modelItem => studyGroup.LastName)
+				</td>
+
+				<td>
+					@Html.DisplayFor(modelItem => studyGroup.StudyStart)
+				</td>
+
+				<td>
+					@Html.DisplayFor(modelItem => studyGroup.StudyEnd)
+				</td>
+
+				<td>
+					@Html.DisplayFor(modelItem => studyGroup.LeaderPupil.FirstName)
+				</td>
+
+				<td>
+					@Html.DisplayFor(modelItem => studyGroup.ClassroomInfo)
+				</td>
+
+				<td>
+					@Html.DisplayFor(modelItem => studyGroup.Level)
+				</td>
+
+				<td>
+					<a asp-action="Edit" asp-route-id="@studyGroup.Id">Muuda</a>
+					<a asp-action="Delete" asp-route-id="@studyGroup.Id">Kustuta</a>
+					<a asp-action="Details" asp-route-id="@studyGroup.Id">Vaata</a>
+				</td>
+			</tr>
+	}
+	</tbody>
+</table>
+
+<a asp-action="Create">Lisa uus StudyGroup</a>
