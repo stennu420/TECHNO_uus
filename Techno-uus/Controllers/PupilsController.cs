@@ -46,7 +46,7 @@ namespace Techno_uus.Controllers
             }
 
             var pupil = await _context.Pupils
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.PupilId == id);
 
             if (pupil == null) 
             {
@@ -63,7 +63,7 @@ namespace Techno_uus.Controllers
             }
 
             var pupil = await _context.Pupils
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.PupilId == id);
 
             if (pupil == null)
             {
@@ -93,7 +93,7 @@ namespace Techno_uus.Controllers
             }
 
             var pupil = await _context.Pupils
-               .FirstOrDefaultAsync(m => m.Id == id);
+               .FirstOrDefaultAsync(m => m.PupilId == id);
 
             if (pupil == null)
             {
@@ -111,7 +111,7 @@ namespace Techno_uus.Controllers
             {
                 return BadRequest();
             }
-            juntsu.Id = id;
+            juntsu.PupilId = id;
             _context.Pupils.Update(juntsu);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");

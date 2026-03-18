@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Techno_uus.Data;
 
@@ -11,9 +12,11 @@ using Techno_uus.Data;
 namespace Techno_uus.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    partial class SchoolContextModelSnapshot : ModelSnapshot
+    [Migration("20260318142823_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,11 +27,11 @@ namespace Techno_uus.Migrations
 
             modelBuilder.Entity("Techno_uus.Models.Pupil", b =>
                 {
-                    b.Property<int>("PupilId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PupilId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("DayOfBirth")
                         .HasColumnType("datetime2");
@@ -57,18 +60,18 @@ namespace Techno_uus.Migrations
                     b.Property<int>("PostCode")
                         .HasColumnType("int");
 
-                    b.HasKey("PupilId");
+                    b.HasKey("Id");
 
                     b.ToTable("Pupil", (string)null);
                 });
 
             modelBuilder.Entity("Techno_uus.Models.StudyGroup", b =>
                 {
-                    b.Property<int>("StudyGroupId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StudyGroupId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClassroomInfo")
                         .HasColumnType("nvarchar(max)");
@@ -89,7 +92,7 @@ namespace Techno_uus.Migrations
                     b.Property<DateTime>("StudyStart")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("StudyGroupId");
+                    b.HasKey("Id");
 
                     b.HasIndex("LeaderPupilId");
 

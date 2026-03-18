@@ -2,7 +2,8 @@
 {
     public class StudyGroup
     {
-        public int Id { get; set; }
+        public int StudyGroupId { get; set; }
+
 
         // Grupi nimi
         public string GroupName { get; set; }

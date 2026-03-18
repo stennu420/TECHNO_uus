@@ -8,16 +8,6 @@
 	<theade>
 		<tr>
 			<th>
-				@Html.DisplayNameFor(model => model.FirstName)
-			</th>
-		</tr>
-		<tr>
-			<th> 
-				@Html.DisplayNameFor(model => model.LastName)
-			</th>
-		</tr>
-		<tr>
-			<th>
 				@Html.DisplayNameFor(model => model.StudyStart)
 			</th>
 		</tr>
@@ -47,14 +37,6 @@
 	{
 			<tr>
 				<td>
-					@Html.DisplayFor(modelItem => studyGroup.FirstName)
-				</td>
-
-				<td>
-					@Html.DisplayFor(modelItem => studyGroup.LastName)
-				</td>
-
-				<td>
 					@Html.DisplayFor(modelItem => studyGroup.StudyStart)
 				</td>
 
@@ -75,9 +57,9 @@
 				</td>
 
 				<td>
-					<a asp-action="Edit" asp-route-id="@studyGroup.Id">Muuda</a>
-					<a asp-action="Delete" asp-route-id="@studyGroup.Id">Kustuta</a>
-					<a asp-action="Details" asp-route-id="@studyGroup.Id">Vaata</a>
+					<a asp-action="Edit" asp-route-id="@studyGroup.StudyGroupId">Muuda</a>
+					<a asp-action="Delete" asp-route-id="@studyGroup.StudyGroupId">Kustuta</a>
+					<a asp-action="Details" asp-route-id="@studyGroup.StudyGroupId">Vaata</a>
 				</td>
 			</tr>
 	}
