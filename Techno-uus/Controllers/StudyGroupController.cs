@@ -56,11 +56,14 @@ namespace Techno_uus.Controllers
             }
             var studyGroup =await _context.StudyGroups
                  .FirstOrDefaultAsync(m => m.StudyGroupId == id);
+
             if (studyGroup == null) 
             {
                 return NotFound();
             }
-            return View(studyGroup);
+            ViewBag.Värv = "Details";
+            ViewData["LeaderPupilId"] = new SelectList(_context.Pupils, "PupilId", "FirstName");
+            return View("DeleteDetails");
         }
         // Siin on Delete
         [HttpGet]
@@ -76,7 +79,9 @@ namespace Techno_uus.Controllers
             {
                 return NotFound();
             }
-            return View(studyGroup);
+            ViewBag.Värv = "Delete";
+            ViewData["LeaderPupilId"] = new SelectList(_context.Pupils, "PupilId", "FirstName");
+            return View("DeleteDetails");
         }
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
