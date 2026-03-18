@@ -1,0 +1,36 @@
+﻿@model Techno_uus.Models.StudyGroup
+
+<h2>Õpperühma info / Kustuta</h2>
+
+<dl>
+	<dt>@Html.DisplayNameFor(m => m.FirstName)</dt>
+	<dd>@Html.DisplayFor(m => m.FirstName)</dd>
+
+	<dt>@Html.DisplayNameFor(m => m.LastName)</dt>
+	<dd>@Html.DisplayFor(m => m.LastName)</dd>
+
+	<dt>@Html.DisplayNameFor(m => m.GroupName)</dt>
+	<dd>@Html.DisplayFor(m => m.GroupName)</dd>
+
+	<dt>@Html.DisplayNameFor(m => m.StudyStart)</dt>
+	<dd>@Html.DisplayFor(m => m.StudyStart)</dd>
+
+	<dt>@Html.DisplayNameFor(m => m.StudyEnd)</dt>
+	<dd>@Html.DisplayFor(m => m.StudyEnd)</dd>
+
+	<dt>@Html.DisplayNameFor(m => m.LeaderPupil)</dt>
+	<dd>@Html.DisplayFor(m => m.LeaderPupil)</dd>
+
+	<dt>@Html.DisplayNameFor(m => m.ClassroomInfo)</dt>
+	<dd>@Html.DisplayFor(m => m.ClassroomInfo)</dd>
+
+	<dt>@Html.DisplayNameFor(m => m.Level)</dt>
+	<dd>@Html.DisplayFor(m => m.Level)</dd>
+
+</dl>
+
+<form  asp-action="Delete">
+	<input type="hidden"asp-for="Id" />
+	<button type="submit">Kustuta</button>
+	<a asp-action="Index">Tagasi</a>
+</form>
