@@ -1,7 +1,6 @@
 ﻿@model Techno_uus.Models.StudyGroup
 
-<h2>Õpperühma info / Kustuta</h2>
-
+<h1>Õpperühma info / Kustuta</h1>
 <dl>
 
 
@@ -25,6 +24,22 @@
 
 </dl>
 
+@if (ViewBag.Värv == "Delete")
+{
+	<h3>Kustuta</h3>
+
+	<form asp-action="Delete"method="post">
+		<input type="hidden" asp-for="StudyGroupId" />
+		<button type="submit">Kustuta</button>
+		<a asp-action="Index">Tagasi</a>
+	</form>
+}
+else 
+{
+	<a  asp-action="Edit" asp-route-id="@Model.StudyGroupId">Muuda</a>
+	<a  asp-action="Delete" asp-route-id="@Model.StudyGroupId">Kustuta</a>
+	<a  asp-action="Index">Tagasi</a>
+}
 <form  asp-action="Delete">
 	<input type="hidden"asp-for="StudyGroupId" />
 	<button type="submit">Kustuta</button>
