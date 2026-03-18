@@ -1,30 +1,8 @@
 ﻿@model Techno_uus.Models.StudyGroup
 
-@{
-	string pealkiri;
-	string actionName;
 
-	if (Model.Id == 0)
-	{
-		pealkiri = "Siseata StudyGroup";
-		actionName = "Create";
-	}
-	else
-	{
-		pealkiri = "Muuda StudyGroupi";
-		actionName = "Edit";
-	}
-}
 
-<form asp-action="@actionName">
-	<div  asp-validation-summary="ModelOnly" class="text-danger"></div>
-	
-
-	@if (Model.Id != 0)
-	{
-		<input type="hidden" asp-for="Id" />
-	}
-
+<form 
 	<div class="form-group">
 		<label asp-for="FirstName" class="control-label"></label>
 		<input asp-for="FirstName" class="form-control" />
