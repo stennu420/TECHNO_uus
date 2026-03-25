@@ -1,0 +1,62 @@
+﻿@model Techno_uus.Models.SportGames
+@{
+	ViewData["Title"] = "Kooli ajaloo jalgpallimängude tulemused";
+}
+<h1>Jalgpalli mängude nimekiri</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(Model => Model.SportName)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.FirstTeamName)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.FirstTeamPlayers)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.pupilGoalie)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.pupilDefense)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.pupilOffence)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.SecondTeamName)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.GameResult)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.HalfTimeScore)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.Date)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.StartTime)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.HalfTime)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.MatchEndScore)
+			</th>
+		</tr>
+	</thead>
+</table>
