@@ -20,6 +20,18 @@ namespace Techno_uus.Controllers
            return View(await _context.SportsGames.ToListAsync());
         }
 
+        [HttpGet]
+        public IActionResult Create() 
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(SportGames Game) 
+        {
+            return RedirectToAction("Index");
+        }
+
       
     }
 }
