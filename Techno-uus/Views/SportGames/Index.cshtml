@@ -1,0 +1,95 @@
+﻿@model  IEnumerable<Techno_uus.Models.SportGames>
+@{
+	ViewData["Title"] = "Kooli ajaloo jalgpallimängude tulemused";
+}
+<h2>Top Mängud</h2>
+
+@foreach (var  item in Model.Where(g =>  g.TopGame))
+{
+	<p>
+		@item.FirstTeamName vs @item.SecondTeamName - @item.MatchEndScore
+	</p>
+}
+<h1>Jalgpalli mängude nimekiri</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(Model => Model.SportName)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.FirstTeamName)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.FirstTeamPlayers)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.pupilGoalie)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.pupilDefense)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.pupilOffence)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.SecondTeamName)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.GameResult)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.HalfTimeScore)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.Date)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.StartTime)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.HalfTime)
+			</th>
+		
+			<th>
+				@Html.DisplayNameFor(Model => Model.MatchEndScore)
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.SportName</td>
+				<td>@item.FirstTeamName</td>
+				<td>@item.FirstTeamPlayers</td>
+				<td>@item.pupilGoalie</td>
+				<td>@item.pupilDefense</td>
+				<td>@item.pupilOffence</td>
+				<td>@item.SecondTeamName</td>
+				<td>@item.GameResult</td>
+				<td>@item.HalfTimeScore</td>
+				<td>@item.Date.ToShortDateString()</td>
+				<td>@item.StartTime.ToShortTimeString()</td>
+				<td>@item.HalfTime.ToShortTimeString()</td>
+				<td>@item.MatchEndScore</td>
+
+				<td>
+					<a asp-action="Edit" asp-route-id="@item.GameId">Muuda</a>
+					<a asp-action="Delete" asp-route-id="@item.GameId">Kustuta</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
