@@ -17,7 +17,7 @@ namespace Techno_uus.Controllers
         
         public async Task<IActionResult> Index() 
         {
-           return View(await _context.SportsGames.ToListAsync());
+           return View(await _context.SportGames.ToListAsync());
         }
 
         [HttpGet]
@@ -29,9 +29,43 @@ namespace Techno_uus.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(SportGames Game) 
         {
-            return RedirectToAction("Index");
+            if (ModelState.IsValid) 
+            {
+                _context.Add(Game);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(Game);
+        }
+        public enum GameStatus 
+        {
+            Voit,
+            Viik,
+            Kaotus
+            
         }
 
-      
+        [HttpPost]
+        public async Task<IActionResult> Edit(int? id) 
+        {
+          if (ModelState.IsValid) 
+          {
+
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+          }
+            return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit (int? id) 
+        {
+            var game = await _context.SportGames.FindAsync(id);
+
+            if (game == null) 
+            {
+                return NotFound();
+            }
+            return View(game);
+        }
     }
 }

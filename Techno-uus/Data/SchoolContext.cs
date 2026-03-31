@@ -9,21 +9,21 @@ namespace Techno_uus.Data
         public SchoolContext(DbContextOptions<SchoolContext> options) : base(options) { } //Constructor kus vaikeväärtusena on andmebaasi seadistus põhinedes paketil olenevatest vaikeväärtustest
         public DbSet<Pupil> Pupils { get; set; } //Model
         public DbSet<StudyGroup> StudyGroups { get; set; } //Model
-<<<<<<< HEAD
+
         public DbSet<ArtGallery> ArtGalleries { get; set; }//Model
 
-=======
-        public DbSet<SportGames> SportsGames { get; set; } // Model
->>>>>>> 43cd9438f0c4b21c11a72e31d8f9d20f9779c10b
+
+        public DbSet<SportGames> SportGames { get; set; } // Model
+
         protected override void OnModelCreating(ModelBuilder modelBuilder) //Paketis olev meetod mille abil tekitame andmebaasi tabelid
         {
             modelBuilder.Entity<Pupil>().ToTable("Pupil"); // ModelBuilderis on nüüd Pupil mudeliga tabel mida meetod ToTable seab pärast päris andmebaasi "Pupil" nimelise tabelina
             modelBuilder.Entity<StudyGroup>().ToTable("StudyGroup"); //ModelBuilderis on nüüd StudyGroup mudeliga tabel mida meetod ToTable seab pärast päris andmebaasi "StudyGroup" nimelise tabelina
-<<<<<<< HEAD
+
             modelBuilder.Entity<ArtGallery>().ToTable("ArtGallery"); 
-=======
+
             modelBuilder.Entity<SportGames>().ToTable("SportsGames"); 
->>>>>>> 43cd9438f0c4b21c11a72e31d8f9d20f9779c10b
+
         }
     }
 }
