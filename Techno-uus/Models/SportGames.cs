@@ -21,5 +21,9 @@ namespace Techno_uus.Models
         public DateTime StartTime { get; set; }
         public DateTime HalfTime { get; set; }
 
+        public enum GameType
+        {
+            outdoors, indoors
+        }
     }
 }

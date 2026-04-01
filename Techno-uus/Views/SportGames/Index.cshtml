@@ -4,12 +4,6 @@
 }
 <h2>Top Mängud</h2>
 
-@foreach (var  item in Model.Where(g =>  g.TopGame))
-{
-	<p>
-		@item.FirstTeamName vs @item.SecondTeamName - @item.MatchEndScore
-	</p>
-}
 <h1>Jalgpalli mängude nimekiri</h1>
 <table class="table">
 	<thead>
@@ -86,8 +80,9 @@
 				<td>@item.MatchEndScore</td>
 
 				<td>
+                    <a asp-action="Create" asp-route-id="@item.GameId">Loo uus mäng</a> |
 					<a asp-action="Edit" asp-route-id="@item.GameId">Muuda</a>
-					<a asp-action="Delete" asp-route-id="@item.GameId">Kustuta</a>
+					<a asp-action="Save" asp-route-id="@item.GameId">Salvets</a>
 				</td>
 			</tr>
 		}

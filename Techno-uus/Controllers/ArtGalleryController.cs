@@ -29,6 +29,6 @@ namespace Techno_uus.Controllers
 
         //Siin algab Create POST
         [HttpPost]
-        public async
+        public async Task<IActionResult> Create(Art)
     }
 }

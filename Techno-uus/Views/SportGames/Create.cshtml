@@ -1,0 +1,132 @@
+﻿@model Techno_uus.Models.SportGames
+
+<h1>SpordiMängude loomine</h1>
+<form method="post" enctype="multipart/form-data">
+	@if (ViewBag.Värv == "Create")
+	{
+		<h1>Punane</h1>
+	}
+	else if (ViewBag.Värv == "Edit")
+	{
+		<h1>Roheline</h1>
+		<input asp-for="GameId" type="hidden" />
+	}
+</form>
+<form asp-action="Create">
+    
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="SportName" class="control-label"></label>
+        <input asp-for="SportName" class="form-control" />
+        <span asp-validation-for="SportName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FirstTeamName" class="control-label"></label>
+        <input asp-for="FirstTeamName" class="form-control" />
+        <span asp-validation-for="FirstTeamName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FirstTeamPlayers" class="control-label"></label>
+        <input asp-for="FirstTeamPlayers" class="form-control" />
+        <span asp-validation-for="FirstTeamPlayers" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="pupilGoalie" class="control-label"></label>
+        <input asp-for="pupilGoalie" class="form-control" />
+        <span asp-validation-for="pupilGoalie" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="pupilDefense" class="control-label"></label>
+        <input asp-for="pupilDefense" class="form-control" />
+        <span asp-validation-for="pupilDefense" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="pupilOffence" class="control-label"></label>
+        <input asp-for="pupilOffence" class="form-control" />
+        <span asp-validation-for="pupilOffence" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="GameResult" class="control-label"></label>
+        <input asp-for="GameResult" class="form-control" />
+        <span asp-validation-for="GameResult" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="HalfTimeScore" class="control-label"></label>
+        <input asp-for="HalfTimeScore" class="form-control" />
+        <span asp-validation-for="HalfTimeScore" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="SecondHalfTimeScore" class="control-label"></label>
+        <input asp-for="SecondHalfTimeScore" class="form-control" />
+        <span asp-validation-for="SecondHalfTimeScore" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MatchEndScore" class="control-label"></label>
+        <input asp-for="MatchEndScore" class="form-control" />
+        <span asp-validation-for="MatchEndScore" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Date" class="control-label"></label>
+        <input asp-for="Date" class="form-control" />
+        <span asp-validation-for="Date" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StartTime" class="control-label"></label>
+        <input asp-for="StartTime" class="form-control" />
+        <span asp-validation-for="StartTime" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HalfTime" class="control-label"></label>
+        <input asp-for="HalfTime" class="form-control" />
+        <span asp-validation-for="HalfTime" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="GameId" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <select asp-for="GameId" asp-items="Html.GetEnumSelectList<GameType>()">
+                <option value="">-- Vali Mäng--</option>
+            </select>
+            <span asp-validation-for="GameId" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div>
+
+
+        @if (ViewBag.Värv == "Create")
+        {
+            <input type="submit" value="Sisesta" class="btn btn-primary" />
+        
+            <br />
+            <a asp-action="Create" asp-controller="SportGame">Mine tagasi loendisse</a>
+        }
+        else if (ViewBag.Värv == "Edit")
+        {
+            <input type="submit" value="Muuda" class="btn btn-primary" />
+        
+            <br />
+            <a asp-action="Edit" asp-controller="SportGame">Mine tagasi loendisse</a>
+
+        }
+    </div>
+</form>
+
+

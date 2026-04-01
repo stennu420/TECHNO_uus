@@ -57,7 +57,7 @@ namespace Techno_uus.Controllers
             return View();
         }
         [HttpGet]
-        public async Task<IActionResult> Edit (int? id) 
+        public async Task<IActionResult> Edit(int? id) 
         {
             var game = await _context.SportGames.FindAsync(id);
 
