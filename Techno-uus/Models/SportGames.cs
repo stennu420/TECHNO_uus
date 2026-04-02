@@ -8,11 +8,9 @@ namespace Techno_uus.Models
         public int GameId { get; set; }
         public string SportName { get; set; }
         public string FirstTeamName { get; set; }
-        public string FirstTeamPlayers { get; set; }
-        public string pupilGoalie { get; set; }
-        public string pupilDefense { get; set; }
-        public string pupilOffence { get; set; }
+        public string HomeTeamPlayers { get; set; }
         public string SecondTeamName { get; set; }
+        public string SecondTeamPlayers { get; set; }
         public string GameResult { get; set; }
         public string  HalfTimeScore { get; set; }
         public string SecondHalfTimeScore { get; set; } 
@@ -24,7 +22,7 @@ namespace Techno_uus.Models
 
         public enum GameStatus
         {
-            Võit,
+            Voit,
             Viik,
             Kaotus
         }

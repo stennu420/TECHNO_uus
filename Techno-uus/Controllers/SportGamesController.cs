@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Techno_uus.Data;
@@ -25,7 +26,7 @@ namespace Techno_uus.Controllers
         {   
            ViewData["Värv"] = "Create";
            ViewData["FirstTeamName"] = new SelectList(_context.SportGames, "GameId", "FirstTeamName");
-           return View("CreateEdit");
+           return View();
         }
 
         [HttpPost]
@@ -41,18 +42,18 @@ namespace Techno_uus.Controllers
         }
         
         [HttpPost]
-        public async Task<IActionResult> Edit(int? id) 
+        public async Task<IActionResult> Edit( SportGames game) 
         {
-          if (id == null) 
+           
+          if (ModelState.IsValid)
           {
-              return NotFound();
+                _context.Update(game);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
           }
-          
-               
-          ViewData["Värv"] = "Edit";
-            ViewData["FirstTeamName"] = new SelectList(_context.SportGames, "GameId", "FirstTeamName");
-            return View("CreateEdit");
-
+            return RedirectToAction("Index");
+              
+        
         }
         [HttpGet]
         public async Task<IActionResult> Edit(int? id) 
@@ -63,7 +64,60 @@ namespace Techno_uus.Controllers
             {
                 return NotFound();
             }
+
+            ViewData["Värv"] = "Edit";
+            ViewData["HomeTeamPlayers"] = new SelectList(_context.Pupils, "GameId", "LastName");
+            return View("Edit");
             return View(game);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Details(int? id) 
+        {
+            if (id == null) 
+            {
+                return View();
+            }
+
+            var game = await _context.SportGames
+                .FirstOrDefaultAsync( game => game.GameId == id);
+
+            if (game == null)
+            {
+                return BadRequest();
+            }
+            return View(game);
+
+
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if(id == null) 
+            {
+                return NotFound();
+            }
+
+            var game = await _context.SportGames.FindAsync(id);
+
+            if (game == null) 
+            {
+                return NotFound();
+            }
+            return View(game);
+        }
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteComfirmd(int id) 
+        {
+            var game = await _context.SportGames.FindAsync(id);
+
+            if (game != null) 
+            {
+                _context.SportGames.Remove(game);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

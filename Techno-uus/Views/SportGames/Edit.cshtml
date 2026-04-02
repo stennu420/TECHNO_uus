@@ -1,1 +1,90 @@
-﻿@model Techno_uus.Models.SportGames
+﻿@using static Techno_uus.Models.SportGames
+@model Techno_uus.Models.SportGames
+
+<h1>Muuda skoor</h1>
+
+<form method="post" enctype="multipart/form-data" asp-action="Edit">
+    <input asp-for="GameId" type="hidden" />
+
+    <div class="form-group">
+        <label asp-for="SportName"></label>
+        <input asp-for="SportName" class="form-control" />
+        <span asp-validation-for="SportName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="FirstTeamName"></label>
+        <input asp-for="FirstTeamName" class="form-control" />
+        <span asp-validation-for="FirstTeamName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HomeTeamPlayers"></label>
+        <input asp-for="HomeTeamPlayers" class="form-control" />
+        <span asp-validation-for="HomeTeamPlayers" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SecondTeamName"></label>
+        <input asp-for="SecondTeamName" class="form-control" />
+        <span asp-validation-for="SecondTeamName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="GameResult"></label>
+        <input asp-for="GameResult" class="form-control" />
+        <span asp-validation-for="GameResult" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HalfTimeScore"></label>
+        <input asp-for="HalfTimeScore" class="form-control" />
+        <span asp-validation-for="HalfTimeScore" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SecondHalfTimeScore"></label>
+        <input asp-for="SecondHalfTimeScore" class="form-control" />
+        <span asp-validation-for="SecondHalfTimeScore" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MatchEndScore"></label>
+        <input asp-for="MatchEndScore" class="form-control" />
+        <span asp-validation-for="MatchEndScore" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Date"></label>
+        <input asp-for="Date" class="form-control" />
+        <span asp-validation-for="Date" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="SecondTeamPlayers"></label>
+        <input asp-for="SecondTeamPlayers" class="form-control" />
+        <span asp-validation-for="SecondTeamPlayers" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StartTime"></label>
+        <input asp-for="StartTime" class="form-control" />
+        <span asp-validation-for="StartTime" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HalfTime"></label>
+        <input asp-for="HalfTime" class="form-control" />
+        <span asp-validation-for="HalfTime" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="MatchStatus"></label>
+        <select asp-for="MatchStatus" class="form-control" asp-items="@Html.GetEnumSelectList<GameStatus>()"></select>
+        <span asp-validation-for="MatchStatus" class="text-danger"></span>
+    </div>
+
+    <input type="submit" asp-route-id="GameId"  value="Salvesta" />
+</form>
+    <a asp-action="Index" asp-controller="SportGames">Tagasi</a>

@@ -1,7 +1,10 @@
-﻿namespace Techno_uus.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Techno_uus.Models
 {
     public class Pupil
     {
+        [Key]
         public int PupilId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

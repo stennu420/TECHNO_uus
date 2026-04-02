@@ -1,0 +1,51 @@
+﻿@model Techno_uus.Models.SportGames
+
+<h1>SoprdiMängude vaatamine</h1>
+
+<div>
+    <table>
+        <tr>
+            <td>@Html.DisplayFor(Model => Model.SportName)</td>
+            <td>@Html.DisplayNameFor(Model =>  Model.SportName)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(Model => Model.FirstTeamName)</td>
+            <td>@Html.DisplayNameFor(Model =>  Model.FirstTeamName)</td>
+        </tr>
+            <td>@Html.DisplayFor(Model => Model.HomeTeamPlayers)</td>
+            <td>@Html.DisplayNameFor(Model =>  Model.HomeTeamPlayers)</td>
+        </tr>
+            <td>@Html.DisplayFor(Model => Model.SecondTeamName)</td>
+            <td>@Html.DisplayNameFor(Model =>  Model.SecondTeamName)</td>
+        </tr>
+            <td>@Html.DisplayFor(Model => Model.GameResult)</td>
+            <td>@Html.DisplayNameFor(Model =>  Model.GameResult)</td>
+        </tr>
+            <td>@Html.DisplayFor(Model => Model.HalfTimeScore)</td>
+            <td>@Html.DisplayNameFor(Model =>  Model.HalfTimeScore)</td>
+        </tr>
+            <td>@Html.DisplayFor(Model => Model.SecondHalfTimeScore)</td>
+            <td>@Html.DisplayNameFor(Model =>  Model.SecondHalfTimeScore)</td>
+        </tr>
+            <td>@Html.DisplayFor(Model => Model.MatchEndScore)</td>
+            <td>@Html.DisplayNameFor(Model =>  Model.MatchEndScore)</td>
+        </tr>
+            <td>@Html.DisplayFor(Model => Model.Date)</td>
+            <td>@Html.DisplayNameFor(Model =>  Model.Date)</td>
+        </tr>
+            <td>@Html.DisplayFor(Model => Model.StartTime)</td>
+            <td>@Html.DisplayNameFor(Model =>  Model.StartTime)</td>
+        </tr>
+            <td>@Html.DisplayFor(Model => Model.HalfTime)</td>
+            <td>@Html.DisplayNameFor(Model =>  Model.HalfTime)</td>
+        </tr>
+            <td>@Html.DisplayFor(Model => Model.MatchStatus)</td>
+            <td>@Html.DisplayNameFor(Model =>  Model.MatchStatus)</td>
+        </tr>
+
+    </table>
+
+    <div>
+        <a asp-action="Index">Mine tagasi loendisse</a>
+    </div>
+</div>)
