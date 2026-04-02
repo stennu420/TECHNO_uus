@@ -1,6 +1,7 @@
 ﻿@model Techno_uus.Models.SportGames
 
 <h1>SpordiMängude loomine</h1>
+
 <form method="post" enctype="multipart/form-data">
 	@if (ViewBag.Värv == "Create")
 	{
@@ -11,10 +12,6 @@
 		<h1>Roheline</h1>
 		<input asp-for="GameId" type="hidden" />
 	}
-</form>
-<form asp-action="Create">
-    
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="form-group">
         <label asp-for="SportName" class="control-label"></label>

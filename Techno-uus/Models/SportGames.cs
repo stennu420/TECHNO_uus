@@ -20,10 +20,13 @@ namespace Techno_uus.Models
         public DateTime Date { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime HalfTime { get; set; }
+        public GameStatus MatchStatus { get; set; }
 
-        public enum GameType
+        public enum GameStatus
         {
-            outdoors, indoors
+            Võit,
+            Viik,
+            Kaotus
         }
     }
 }

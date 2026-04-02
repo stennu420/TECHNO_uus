@@ -22,8 +22,10 @@ namespace Techno_uus.Controllers
 
         [HttpGet]
         public IActionResult Create() 
-        {
-            return View();
+        {   
+           ViewData["Värv"] = "Create";
+           ViewData["FirstTeamName"] = new SelectList(_context.SportGames, "GameId", "FirstTeamName");
+           return View("CreateEdit");
         }
 
         [HttpPost]
@@ -37,24 +39,20 @@ namespace Techno_uus.Controllers
             }
             return View(Game);
         }
-        public enum GameStatus 
-        {
-            Voit,
-            Viik,
-            Kaotus
-            
-        }
-
+        
         [HttpPost]
         public async Task<IActionResult> Edit(int? id) 
         {
-          if (ModelState.IsValid) 
+          if (id == null) 
           {
-
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+              return NotFound();
           }
-            return View();
+          
+               
+          ViewData["Värv"] = "Edit";
+            ViewData["FirstTeamName"] = new SelectList(_context.SportGames, "GameId", "FirstTeamName");
+            return View("CreateEdit");
+
         }
         [HttpGet]
         public async Task<IActionResult> Edit(int? id) 
