@@ -20,11 +20,15 @@ namespace Techno_uus.Models
         public DateTime HalfTime { get; set; }
         public GameStatus MatchStatus { get; set; }
 
+
         public enum GameStatus
         {
             Voit,
             Viik,
             Kaotus
         }
+
+        
+
     }
 }

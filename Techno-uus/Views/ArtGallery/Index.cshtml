@@ -1,2 +1,37 @@
-﻿@model Techno_uus.Models.ArtGallery
+﻿@model IEnumerable<Techno_uus.Models.ArtGallery>
 
+@{
+    ViewData["Title"] = "Art Gallery";
+}
+
+<h1>Art Gallery</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Uuus töö</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Autor</th>
+            <th>Töö nimi</th>
+            <th>Loomise kuupäev</th>
+        </tr>
+    </thead>
+
+    <tbpdy>
+        @foreach (var art in  Model)
+        {
+            <tr>
+                <td>@art.PupilName</td>
+
+                <td>
+                    <a asp-action="Details" asp-route-id="@art.Id">
+                        @art.ArtWorkTitle
+                    </a>
+                </td>
+                <td>@art.CreationDate</td>
+            </tr>
+        }
+    </tbpdy>
+</table>

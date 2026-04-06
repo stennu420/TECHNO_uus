@@ -1,0 +1,36 @@
+﻿@model Techno_uus.Models.ArtGallery
+
+@{
+    ViewData["Title"] = "Töö details";
+}
+
+<h1>@Model.ArtWorkTitle</h1>
+
+<div class="mb-3">
+    <p><strong>Autor:</strong>@Model.PupilName</p>
+
+    @if (!string.IsNullOrWhiteSpace(Model.PupilId))
+    {
+        <p><strong>Õpilase ID:</strong> @Model.PupilId</p>
+    }
+
+    <p><strong>Kirjeldus:</strong> @Model.ArtWorkDDescription</p>
+    <p><strong>Loomise kuupäev:</strong> @Model.CreationDate</p>
+    <p><strong>Esitatud:</strong> @Model.SubmittedAt.ToString("yyyy-MM-dd HH:mm")</p>
+</div>
+
+@if (!string.IsNullOrWhiteSpace(Model.ImagePath))
+{
+    <div class="mb-3">
+        <img src="@Model.ImagePath" alt="@Model.ArtWorkTitle" style="max-width: 500px; height: auto;" class="img-fluid" />
+    </div>
+}
+
+    <a asp-action="Index" class="btn btn-secondary">Tagasi</a>
+
+    <form asp-action="Delete" asp-route-id="@Model.Id" method="post" style="display:inline;">
+        <button type="submit" class="btn btn-danger"
+                onclick="return confirm('Kas oled kindel, et soovid selle töö kustutada?');">
+            Delete
+        </button>
+    </form>

@@ -1,34 +1,40 @@
-﻿
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Techno_uus.Data;
+using Techno_uus.Models;
 
 namespace Techno_uus.Controllers
 {
     public class ArtGalleryController : Controller
     {
-        //private readonly AppDbContext _context;
-        //public ArtGalleryController(AppDbContext context) 
-        //{
-        //    _context = context;
-        //}
+        private readonly SchoolContext _context;
+        private readonly IWebHostEnvironment _environment;
 
-        ////Siin algab Index
-        //public  IActionResult Index() 
-        //{
-        //    var artworks = _context.Artworks
-        //        .OrderByDescendig(artworks => artworks.CreationDate)
-        //        .ToList();
+        public ArtGalleryController(SchoolContext context, IWebHostEnvironment environment)
+        {
+            _context = context;
+            _environment = environment;
+        }
 
-        //    return View(artworks);
-        //}
+        public async Task<IActionResult> Index() 
+        {
+            return View(await _context.ArtGalleries.ToListAsync());
+        }
 
-        ////Siin algab Create 
-        //public  IActionResult Create() 
-        //{
-        //    return View();
-        //}
+        [HttpGet]
+        public IActionResult Create() 
+        {
+            var model = new ArtGallery();
 
-        ////Siin algab Create POST
-       
-        
+            model.PupilName = User.Identity != null && User.Identity.IsAuthenticated
+                ? User.Identity.Name ?? "Anonüümne"
+                : "Anonüümne";
+
+            model.SubmittedAt = DateTime.Now;
+
+            return View(model);
+        }
+
+
     }
 }
