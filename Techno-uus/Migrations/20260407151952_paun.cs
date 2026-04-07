@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Techno_uus.Migrations
 {
     /// <inheritdoc />
-    public partial class games : Migration
+    public partial class paun : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,19 +15,35 @@ namespace Techno_uus.Migrations
                 name: "ArtGallery",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ArtId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     PupilName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PupilId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreationDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ArtWorkTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ArtWorkDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SubmittedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    SubmittedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreationDate = table.Column<DateOnly>(type: "date", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ArtGallery", x => x.Id);
+                    table.PrimaryKey("PK_ArtGallery", x => x.ArtId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GalleryImages",
+                columns: table => new
+                {
+                    ImageID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImageData = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    ListID = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GalleryImages", x => x.ImageID);
                 });
 
             migrationBuilder.CreateTable(
@@ -110,6 +126,9 @@ namespace Techno_uus.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ArtGallery");
+
+            migrationBuilder.DropTable(
+                name: "GalleryImages");
 
             migrationBuilder.DropTable(
                 name: "SportsGames");

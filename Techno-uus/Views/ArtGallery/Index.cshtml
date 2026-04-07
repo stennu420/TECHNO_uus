@@ -5,12 +5,8 @@
 }
 
 <h1>Art Gallery</h1>
-
-<p>
-    <a asp-action="Create" class="btn btn-primary">Uuus töö</a>
-</p>
-
 <table class="table">
+    <a asp-action="Create"asp-controller="ArtGallery">Uuus töö</a>
     <thead>
         <tr>
             <th>Autor</th>
@@ -26,7 +22,7 @@
                 <td>@art.PupilName</td>
 
                 <td>
-                    <a asp-action="Details" asp-route-id="@art.Id">
+                    <a asp-action="Details" asp-route-id="@art.ArtId">
                         @art.ArtWorkTitle
                     </a>
                 </td>

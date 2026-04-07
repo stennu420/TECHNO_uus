@@ -10,7 +10,9 @@ namespace Techno_uus.Data
         public DbSet<Pupil> Pupils { get; set; } //Model
         public DbSet<StudyGroup> StudyGroups { get; set; } //Model
 
-        public DbSet<ArtGallery> ArtGalleries { get; set; }//Model
+        public DbSet<ArtGallery> ArtGallery { get; set; }//Model
+
+        public DbSet<ArtGalleryListImageViewModel> GalleryImages { get; set; }
 
 
         public DbSet<SportGames> SportGames { get; set; } // Model

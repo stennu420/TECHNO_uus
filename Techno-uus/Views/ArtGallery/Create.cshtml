@@ -6,53 +6,49 @@
 
 <h1>Esita uus töö</h1>
 
-<form asp-action="Create"> method="post"  enctype="multipart/form-data">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form method="post" enctype="multipart/form-data">
+    
 
     <input asp-for="SubmittedAt" type="hidden"/>
-    <div class="mb-3">
-        <label asp-for="PupilName" class="form-label">Õpilase nimi</label>
-        <input asp-for="PupilName" class="form-control" readonly/>
+    <div class="form-group">
+        <label asp-for="PupilName" class="control-label">Õpilase nimi</label>
+        <input asp-for="PupilName" class="form-control" />
         <span asp-validation-for="PupilName" class="text-danger"></span>
     </div>
-    <div class="mb-3">
-        <label asp-for="PupilId" class="form-label">Õpilase ID</label>
+    <div class="form-group">
+        <label asp-for="PupilId" class="control-label">Õpilase ID</label>
         <input asp-for="PupilId" class="form-control" />
         <span asp-validation-for="PupilId" class="text-danger"></span>
     </div>
 
-    <div class="mb-3">
-        <label asp-for="ArtWorkTitle" class="form-label">Töö nimi</label>
+    <div class="form-group">
+        <label asp-for="ArtWorkTitle" class="control-label">Töö nimi</label>
         <input asp-for="ArtWorkTitle" class="form-control" />
         <span asp-validation-for="ArtWorkTitle" class="text-danger"></span>
     </div>
 
-    <div class="mb-3">
-        <label asp-for="ArtWorkDDescription" class="form-label">Kirjeldus</label>
-        <textarea asp-for="ArtWorkDDescription" class="form-control" rows="4"></textarea>
-        <span asp-validation-for="ArtWorkDDescription" class="text-danger"></span>
+    <div class="form-group">
+        <label asp-for="ArtWorkDescription" class="control-label">Kirjeldus</label>
+        <input asp-for="ArtWorkDescription" class="form-control"/>
+        <span asp-validation-for="ArtWorkDescription" class="text-danger"></span>
     </div>
 
-    <div class="mb-3">
-        <label asp-for="CreationDate" class="form-label">Loomise kuupäev</label>
+    <div class="form-group">
+        <label asp-for="CreationDate" class="control-label">Loomise kuupäev</label>
         <input asp-for="CreationDate" type="date" class="form-control" />
         <span asp-validation-for="CreationDate" class="text-danger"></span>
     </div>
 
-    <div class="mb-3">
-        <label asp-for="Image" class="form-label">Pilt</label>
+   @* <div class="form-group">
+        <label asp-for="Image" class="control-label">Pilt</label>
         <input asp-for="Image" type="file" class="form-control" />
         <span asp-validation-for="Image" class="text-danger"></span>
-    </div>
+    </div>*@
 
     <button type="submit" class="btn btn-success">Salvesta</button>
     <a asp-action="Index" class="btn btn-secondary">Tagasi</a>
 </form>
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
+
 
 

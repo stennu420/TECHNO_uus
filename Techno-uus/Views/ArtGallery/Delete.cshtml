@@ -1,0 +1,62 @@
+﻿@model Techno_uus.Models.ArtGallery
+
+<h1>Kustuta kunstiteos</h1>
+<div>
+    <table>
+        <tr>
+            <td>@Html.DisplayFor(Model => Model.ArtId)</td>
+            <td>@Html.DisplayNameFor(Model => Model.ArtId)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(Model => Model.ArtWorkTitle)</td>
+            <td>@Html.DisplayNameFor(Model => Model.ArtWorkTitle)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(Model => Model.ArtWorkDescription)</td>
+            <td>@Html.DisplayNameFor(Model => Model.ArtWorkDescription)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(Model => Model.Image)</td>
+            <td>@Html.DisplayNameFor(Model => Model.Image)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(Model => Model.ImagePath)</td>
+            <td>@Html.DisplayNameFor(Model => Model.ImagePath)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(Model => Model.Description)</td>
+            <td>@Html.DisplayNameFor(Model => Model.Description)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(Model => Model.SubmittedAt)</td>
+            <td>@Html.DisplayNameFor(Model => Model.SubmittedAt)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayFor(Model => Model.CreationDate)</td>
+            <td>@Html.DisplayNameFor(Model => Model.CreationDate)</td>
+        </tr>   
+    </table>
+</div>
+<div>
+    
+
+    @if (!Model.Image.Any() || Model == null)
+    {
+        <p>Pilte pole</p>
+    }
+</div>
+@if (Model.ArtWorkTitle == "Poster")
+{
+    <img class="card-img-top" src="@Model.Image" asp-append-version="true" />
+}
+else
+{
+    <img width="128" src="~/lib/defaultassets/image/noposter.png" />
+}
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="ArtId" />
+    <input type="submit" value="Kustuta kunstiteaos" class="btn btn-danger" /> <br />
+    <a asp-action="Index">Tühista</a>
+</form>
+

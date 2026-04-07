@@ -12,8 +12,8 @@ using Techno_uus.Data;
 namespace Techno_uus.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20260402173519_games")]
-    partial class games
+    [Migration("20260407152251_toooop")]
+    partial class toooop
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,17 @@ namespace Techno_uus.Migrations
 
             modelBuilder.Entity("Techno_uus.Models.ArtGallery", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("ArtId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("ArtWorkDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ArtWorkTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateOnly>("CreationDate")
                         .HasColumnType("date");
@@ -39,8 +45,10 @@ namespace Techno_uus.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ImagePath")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PupilId")
@@ -53,13 +61,35 @@ namespace Techno_uus.Migrations
                     b.Property<DateTime>("SubmittedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Title")
+                    b.HasKey("ArtId");
+
+                    b.ToTable("ArtGallery", (string)null);
+                });
+
+            modelBuilder.Entity("Techno_uus.Models.ArtGalleryListImageViewModel", b =>
+                {
+                    b.Property<Guid>("ImageID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<byte[]>("ImageData")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
 
-                    b.ToTable("ArtGallery", (string)null);
+                    b.Property<string>("ImageTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ListID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ImageID");
+
+                    b.ToTable("GalleryImages");
                 });
 
             modelBuilder.Entity("Techno_uus.Models.Pupil", b =>
