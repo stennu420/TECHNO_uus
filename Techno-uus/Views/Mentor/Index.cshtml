@@ -1,1 +1,43 @@
 ﻿@model Techno_uus.Models.Mentor
+
+@{
+    ViewData["Title"] = "Mentorid";
+}
+
+<h1>Mentorid</h1>
+
+<p>
+    <a asp-action="Create"  class="btn btn-primary">Lisa uus mentor</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+            <th>@Html.DisplayNameFor(model => model.LastName)</th>
+            <th>@Html.DisplayNameFor(model => model.PersonalCode)</th>
+            <th>@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+            <th>@Html.DisplayNameFor(model => model.Email)</th>
+            <th>@Html.DisplayNameFor(model => model.IsFired)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="@(item.IsFired ? "table-danger" : "")">
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.PersonalCode</td>
+                <td>@item.PhoneNumber</td>
+                <td>@item.Email</td>
+                <td>@(item.IsFired ? "Jah" : "Ei")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">Vaata</a> 
+                    <a asp-action="Edit" asp-route-id="@item.Id">Muuda</a> 
+                    <a asp-action="Delete" asp-route-id="@item.Id">Kustuta</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

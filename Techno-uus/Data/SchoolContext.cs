@@ -13,6 +13,7 @@ namespace Techno_uus.Data
         public DbSet<ArtGallery> ArtGallery { get; set; }//Model
 
         public DbSet<ArtGalleryListImageViewModel> GalleryImages { get; set; }
+        public DbSet<Mentor>Mentors { get; set; }
 
 
         public DbSet<SportGames> SportGames { get; set; } // Model
@@ -24,7 +25,9 @@ namespace Techno_uus.Data
 
             modelBuilder.Entity<ArtGallery>().ToTable("ArtGallery"); 
 
-            modelBuilder.Entity<SportGames>().ToTable("SportsGames"); 
+            modelBuilder.Entity<SportGames>().ToTable("SportsGames");
+
+            modelBuilder.Entity<Mentor>().ToTable("Mentors");
 
         }
     }
