@@ -5,7 +5,6 @@
 }
 
 <h1>@Model.ArtWorkTitle</h1>
-<tr><partial name="Details" model="@Model.Image"></partial> IMAGE HERE</tr>
 <div class="mb-3">
     <p><strong>Autor:</strong>@Model.PupilName</p>
 
@@ -22,13 +21,21 @@
 
 
     <div class="mb-3">
-        <img src="@Model.ImagePath" alt="@Model.ArtWorkTitle" style="max-width: 500px; height: auto;" class="img-fluid" />
+        <img src="@Model.Image" alt="@Model.ArtWorkTitle" style="max-width: 500px; height: auto;" class="img-fluid" />
     </div>
 
 
-    <a asp-action="Index" class="btn btn-primary">Tagasi</a>
+@if (!string.IsNullOrEmpty(Model.ImagePath))
+{
+    <img src="@Model.ImagePath" style="max-width:300px;" />
+}
+else
+{
+    <p>Pilti pole</p>
+    <img width="200" src="~/lib/defaultassets/image/noposter.png" />
+}
 
-    <form asp-action="Delete" asp-route-id="@Model.ArtId" method="post" >
-        <button type="submit" class="btn btn-danger"></button>
+    <form>
+        <a asp-action="Index" class="btn btn-primary">Tagasi</a>
     </form>
 

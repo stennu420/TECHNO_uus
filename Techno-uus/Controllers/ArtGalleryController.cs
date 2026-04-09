@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Techno_uus.Data;
 using Techno_uus.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Techno_uus.Controllers
 {
@@ -13,7 +14,7 @@ namespace Techno_uus.Controllers
         public ArtGalleryController(SchoolContext context)
         {
             _context = context;
-            _context = context;
+            
         }
 
         public async Task<IActionResult> Index()
@@ -24,24 +25,53 @@ namespace Techno_uus.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var images = _context.ArtGallery
+                .OrderBy(a => a.ArtWorkTitle)
+                .Select(a => new ArtGalleryListImageViewModel
+                {
+                    ImageID = a.ArtId,
+                    ImageTitle = a.ArtWorkTitle,
+                    Image = a.Image,
+                    ImageData = null
+
+                })
+                .ToList();
+            ViewData["allImages"] = images;
+            ViewData["userHasSelected"] = new List<string>();
+            return View("Create");
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ArtGallery art)
+        public async Task<IActionResult> Create(ArtGallery art, string ImageUrl)
         {
+
             ArtGallery newArt = new ArtGallery();
-            newArt.PupilId = art.PupilId;
-            newArt.PupilName = art.PupilName;
-            newArt.ArtId = Guid.NewGuid();
-            newArt.ArtWorkTitle = art.ArtWorkTitle;
-            newArt.Image = null;
-            newArt.ImagePath = art.ImagePath;
-            newArt.Description = art.Description;
-            newArt.ArtWorkDescription = art.ArtWorkDescription;
-            newArt.CreationDate = DateOnly.FromDateTime(DateTime.Now);
-            newArt.SubmittedAt = DateTime.Now;
-             
+            {
+
+            
+                newArt.PupilId = art.PupilId;
+                newArt.PupilName = art.PupilName;
+                newArt.ArtId = Guid.NewGuid();
+                newArt.ArtWorkTitle = art.ArtWorkTitle;
+
+                if (!string.IsNullOrEmpty(ImageUrl)) 
+                {
+                    newArt.ImagePath = ImageUrl;
+                }
+                else 
+                {
+                    newArt.ImagePath = null;
+                }
+                newArt.Image = null;
+                newArt.ImagePath = art.ImagePath;
+                newArt.Description = art.Description;
+                newArt.ArtWorkDescription = art.ArtWorkDescription;
+                newArt.CreationDate = DateOnly.FromDateTime(DateTime.Now);
+                newArt.SubmittedAt = DateTime.Now;
+
+                
+            };
+
                 _context.Add(newArt);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -58,7 +88,7 @@ namespace Techno_uus.Controllers
                 return NotFound();
             }
 
-            var art =  _context.ArtGallery
+            var art = await _context.ArtGallery
                 .Where(a => a.ArtId == Guid.Parse(id))
                 .Select(a => new ArtGallery
                 {
@@ -69,28 +99,31 @@ namespace Techno_uus.Controllers
                     Description = a.Description,
                     ImagePath = a.ImagePath,
                     SubmittedAt = a.SubmittedAt,
-                    //CreationDate = a.CreationDate,
-                    //Image = new List<ArtGalleryListImageViewModel>(_context.GalleryImages
-                    //    .Where(i => i.ListID == a.ArtId)
-                    //    .Select(li => new ArtGalleryListImageViewModel
-                    //    {
-                    //        ListID = li.ListID,
-                    //        ImageID = li.ImageID,
-                    //        ImageData = li.ImageData,
-                    //        ImageTitle = li.ImageTitle
-                    //        // Image = string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(li.ImageData)),
-                    //});
+                    CreationDate = a.CreationDate
+                })
+                .FirstOrDefaultAsync();
+            if (art == null)
+            {
+                return NotFound();
+            }
 
-                });
-                //);
+            return View(art);
+            // Image = new List<ArtGalleryListImageViewModel>(
+            //_context.GalleryImages
+            //     .Where(i => i.ListID == a.ArtId)
+            //    .Select(li => new ArtGalleryListImageViewModel
+            //    {
+            //        ListID = li.ListID,
+            //        ImageID = li.ImageID,
+            //       ImageData = li.ImageData,
+            //       ImageTitle = li.ImageTitle,
+            //       Image = string.Format("data:image/gif;base64,{0}", Convert.ToBase64String(li.ImageData))
+            //   })
+
+
+
+        }
                 
-                if(art == null) 
-                {
-                    return NotFound();
-    }
-                return View(art); }
-            
-
         [HttpGet]
         public async Task<IActionResult> Delete(string? id) 
         {
@@ -107,12 +140,12 @@ namespace Techno_uus.Controllers
             return View(ArtGallery);
         }
 
-        [HttpPost, ActionName("Detele")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var art = await _context.ArtGallery
-                  .FirstOrDefaultAsync(a => a.PupilId == id); 
+                  .FirstOrDefaultAsync(a => a.ArtId == Guid.Parse(id)); 
             if(art != null) 
             {
                 _context.ArtGallery.Remove(art);

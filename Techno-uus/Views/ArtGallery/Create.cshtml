@@ -39,11 +39,13 @@
         <span asp-validation-for="CreationDate" class="text-danger"></span>
     </div>
 
-   @* <div class="form-group">
-        <label asp-for="Image" class="control-label">Pilt</label>
-        <input asp-for="Image" type="file" class="form-control" />
-        <span asp-validation-for="Image" class="text-danger"></span>
-    </div>*@
+    <div class="form-group">
+        <label asp-for="ImagePath" class="control-label">Pilt</label>
+        <input asp-for="ImagePath" class="from-control" />
+        <span asp-validation-for="ImagePath" class="text-danger"></span>
+    </div>
+
+   
 
     <button type="submit" class="btn btn-success">Salvesta</button>
     <a asp-action="Index" class="btn btn-secondary">Tagasi</a>

@@ -37,26 +37,22 @@
         </tr>   
     </table>
 </div>
-<div>
+
     
 
-    @if (!Model.Image.Any() || Model == null)
+    @if (!string.IsNullOrEmpty(Model.ImagePath))
     {
-        <p>Pilte pole</p>
+        <img src="@Model.ImagePath" style="max-width:300px;" />
     }
-</div>
-@if (Model.ArtWorkTitle == "Poster")
-{
-    <img class="card-img-top" src="@Model.Image" asp-append-version="true" />
-}
-else
-{
-    <img width="128" src="~/lib/defaultassets/image/noposter.png" />
-}
+    else
+    {
+        <p>Pilti pole</p>
+        <img width="200" src="~/lib/defaultassets/image/noposter.png" />
+    }
 
 <form asp-action="Delete">
     <input type="hidden" asp-for="ArtId" />
     <input type="submit" value="Kustuta kunstiteaos" class="btn btn-danger" /> <br />
-    <a asp-action="Index">Tühista</a>
+    <a asp-action="Index">Mine tagasi loendisse</a>
 </form>
 

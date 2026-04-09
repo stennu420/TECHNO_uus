@@ -1,4 +1,4 @@
-# TECHNO_uus
+# TECHNO\_uus
 
 Tee uus index, "artgallery" kus on listina õpilaste tööd - indexis pilte ei kuvata.
 indexis on nupp "esita uus töö", mis lubab õpilasel uue töö lisada - mittesisselogitud kasutajal on nimi automaatselt ette antud "Anonüümne"
@@ -15,3 +15,14 @@ tee uus index, kus on kooli ajaloo jalgpallimängude tulemused. (3v3)
 indexis on nupp "salvesta mäng".
 Üks mäng omab muutujatena id, kuupäev kellaaeg, poolaeg 1 skoor poolaeg 2 skoor ja mängu lõppskoor, pupilGoalie, õpilane kes on väravas, pupilDefense, kaitse ja PupilOffence - see kes ajab palli taga, vastase kooli osalejate jaoks on ainult üks string väli - kuna vastase koolin õpilasi selle kooli andmebaasis ei ole. Ja enum Status (Võit Viik Kaotus) ning bool topGame.
 Entry saab muuta ja kustutada ning kui "topGame" on true, kuvada ka indexi lehel välja.
+
+=========================
+
+lisa juurde programmiosa Mentor, Mentori tabel omab endas eesnime, perekonnanime, id, isikukood, telefoninumber ja 
+
+emailiaadress - ei ole registreerimine vaid kontaktandmed, ning ka "isFired". Kui isfired on True, siis detailivaate taust on punane. Mentoreid saab lisada, 
+
+vaadata muuta ja kustutada.
+
+=========================
+

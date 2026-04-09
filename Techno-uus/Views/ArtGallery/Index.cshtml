@@ -15,7 +15,7 @@
         </tr>
     </thead>
 
-    <tbpdy>
+    <tbody>
         @foreach (var art in  Model)
         {
             <tr>
@@ -23,11 +23,19 @@
 
                 <td>
                     <a asp-action="Details" asp-route-id="@art.ArtId">
-                        @art.ArtWorkTitle
+                     @art.ArtWorkTitle
                     </a>
                 </td>
+             
                 <td>@art.CreationDate</td>
+                
+                 <td>
+                    <a asp-action="Delete" asp-route-id="@art.ArtId">Kustuta</a>
+                 </td>
+                
+
             </tr>
+            
         }
-    </tbpdy>
+    </tbody>
 </table>
