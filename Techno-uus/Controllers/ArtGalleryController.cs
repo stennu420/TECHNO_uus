@@ -25,20 +25,7 @@ namespace Techno_uus.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            var images = _context.ArtGallery
-                .OrderBy(a => a.ArtWorkTitle)
-                .Select(a => new ArtGalleryListImageViewModel
-                {
-                    ImageID = a.ArtId,
-                    ImageTitle = a.ArtWorkTitle,
-                    Image = a.Image,
-                    ImageData = null
-
-                })
-                .ToList();
-            ViewData["allImages"] = images;
-            ViewData["userHasSelected"] = new List<string>();
-            return View("Create");
+            return View();
         }
 
         [HttpPost]
