@@ -1,0 +1,45 @@
+﻿@model Techno_uus.Models.Mentor
+
+@{
+    ViewData["Title"] = "Kustuta Mentor";
+}
+
+
+
+<h1>Mentori Kustutamine</h1>
+
+<div>
+	<table>
+		<tr>
+			<td>@Html.DisplayFor(Model => Model.FirstName)</td>
+			<td>@Html.DisplayNameFor(Model => Model.FirstName)</td>
+		</tr>
+
+		<tr>
+			<td>@Html.DisplayFor(Model => Model.LastName)</td>
+			<td>@Html.DisplayNameFor(Model => Model.LastName)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayFor(Model => Model.PersonalCode)</td>
+			<td>@Html.DisplayNameFor(Model => Model.PersonalCode)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayFor(Model => Model.Email)</td>
+			<td>@Html.DisplayNameFor(Model => Model.Email)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayFor(Model => Model.PhoneNumber)</td>
+			<td>@Html.DisplayNameFor(Model => Model.PhoneNumber)</td>
+		</tr>
+		<tr>
+			<td>@Html.DisplayFor(Model => Model.IsFired)</td>
+			<td>@Html.DisplayNameFor(Model => Model.IsFired)</td>
+		</tr>
+	</table>
+
+</div>
+<form asp-action="Delete">
+	<input type="hidden" asp-for="Id" />
+	<input type="submit" value="Kustuta Mentor" class="btn btn-danger" /> <br />
+	<a asp-action="Index">Tühista</a>
+</form>

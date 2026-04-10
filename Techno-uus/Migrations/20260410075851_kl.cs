@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Techno_uus.Migrations
 {
     /// <inheritdoc />
-    public partial class paun : Migration
+    public partial class kl : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -44,6 +44,24 @@ namespace Techno_uus.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_GalleryImages", x => x.ImageID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Mentors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PersonalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsFired = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Mentors", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -129,6 +147,9 @@ namespace Techno_uus.Migrations
 
             migrationBuilder.DropTable(
                 name: "GalleryImages");
+
+            migrationBuilder.DropTable(
+                name: "Mentors");
 
             migrationBuilder.DropTable(
                 name: "SportsGames");

@@ -1,0 +1,52 @@
+﻿@model Techno_uus.Models.Mentor
+
+@{
+    ViewData["Title"] = "Mentori detailid";
+    var bgColor = Model.IsFired ? "#a10000" : "transparent";
+}
+
+<div style="background-color:@bgColor; padding:20px;">
+
+    <h1>Mentori Detailid</h1>
+
+    <table>
+        <tr>
+            <td>@Html.DisplayNameFor(m => m.FirstName)</td>
+            <td>@Html.DisplayFor(m => m.FirstName)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(m => m.LastName)</td>
+            <td>@Html.DisplayFor(m => m.LastName)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(m => m.PersonalCode)</td>
+            <td>@Html.DisplayFor(m => m.PersonalCode)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(m => m.Email)</td>
+            <td>
+                @Model.Email
+            </td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(m => m.PhoneNumber)</td>
+            <td>@Html.DisplayFor(m => m.PhoneNumber)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(m => m.IsFired)</td>
+            <td>
+                @(Model.IsFired ? "Vallandatud" : "Aktiivne")
+            </td>
+        </tr>
+    </table>
+
+    <br />
+
+    <a asp-action="Index">Tagasi</a>
+
+</div>

@@ -12,8 +12,8 @@ using Techno_uus.Data;
 namespace Techno_uus.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20260407152251_toooop")]
-    partial class toooop
+    [Migration("20260410075851_kl")]
+    partial class kl
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -90,6 +90,42 @@ namespace Techno_uus.Migrations
                     b.HasKey("ImageID");
 
                     b.ToTable("GalleryImages");
+                });
+
+            modelBuilder.Entity("Techno_uus.Models.Mentor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsFired")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PersonalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Mentors", (string)null);
                 });
 
             modelBuilder.Entity("Techno_uus.Models.Pupil", b =>
